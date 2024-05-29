@@ -13,11 +13,13 @@ import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static enums.PropertyUrls.BS_HUB;
+
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://hub.browserstack.com/wd/hub");
+            return new URL(BS_HUB.getPropertyLink());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

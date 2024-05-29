@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static enums.PropertyUrls.APK_DOWNLOAD_URL;
+import static enums.PropertyUrls.LOCAL_HUB;
 import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
 import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
@@ -21,7 +23,7 @@ public class LocalDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://localhost:4723/wd/hub");
+            return new URL(LOCAL_HUB.getPropertyLink());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -46,8 +48,7 @@ public class LocalDriver implements WebDriverProvider {
     }
 
     private String getAppPath() {
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/releases" +
-                "/download/latest/app-alpha-universal-release.apk";
+        String appUrl = APK_DOWNLOAD_URL.getPropertyLink();
         String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
         File app = new File(appPath);
         if (!app.exists()) {
