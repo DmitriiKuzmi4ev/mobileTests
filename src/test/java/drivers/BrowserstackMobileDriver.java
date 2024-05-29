@@ -33,7 +33,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.merge(capabilities);
         mutableCapabilities.setCapability("browserstack.user", config.username());
         mutableCapabilities.setCapability("browserstack.key", config.accessKey());
-        mutableCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        mutableCapabilities.setCapability("app", deviceConfig.app());
         mutableCapabilities.setCapability("device", deviceConfig.device());
         mutableCapabilities.setCapability("os_version", deviceConfig.osVersion());
         mutableCapabilities.setCapability("automationName", deviceConfig.automationName());

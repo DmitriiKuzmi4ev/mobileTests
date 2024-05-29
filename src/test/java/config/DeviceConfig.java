@@ -19,6 +19,10 @@ public interface DeviceConfig extends Config {
 
     @Key("name")
     String name();
+
     @Key("automationName")
     String automationName();
+
+    @Key("app")
+    String app();
 }
