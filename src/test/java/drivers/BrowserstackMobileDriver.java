@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static enums.CapabilityName.*;
 import static enums.PropertyUrls.BS_HUB;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
@@ -33,15 +34,15 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
-        mutableCapabilities.setCapability("browserstack.user", config.username());
-        mutableCapabilities.setCapability("browserstack.key", config.accessKey());
-        mutableCapabilities.setCapability("app", deviceConfig.app());
-        mutableCapabilities.setCapability("device", deviceConfig.device());
-        mutableCapabilities.setCapability("os_version", deviceConfig.osVersion());
-        mutableCapabilities.setCapability("automationName", deviceConfig.automationName());
-        mutableCapabilities.setCapability("project", deviceConfig.project());
-        mutableCapabilities.setCapability("build", deviceConfig.build());
-        mutableCapabilities.setCapability("name", deviceConfig.name());
+        mutableCapabilities.setCapability(USER_LOGIN.getCaps(), config.username());
+        mutableCapabilities.setCapability(USER_PASSWORD.getCaps(), config.accessKey());
+        mutableCapabilities.setCapability(APP_URL.getCaps(), deviceConfig.app());
+        mutableCapabilities.setCapability(DEVICE_MODEL.getCaps(), deviceConfig.device());
+        mutableCapabilities.setCapability(OS_VERSION.getCaps(), deviceConfig.osVersion());
+        mutableCapabilities.setCapability(AUTO_NAME.getCaps(), deviceConfig.automationName());
+        mutableCapabilities.setCapability(PR_NAME.getCaps(), deviceConfig.project());
+        mutableCapabilities.setCapability(BUILD_NAME.getCaps(), deviceConfig.build());
+        mutableCapabilities.setCapability(TEST_NAME.getCaps(), deviceConfig.name());
 
         return new RemoteWebDriver(getAppiumServerUrl(), mutableCapabilities);
     }
